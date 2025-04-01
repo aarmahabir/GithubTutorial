@@ -1,16 +1,34 @@
-# This is a sample Python script.
+import time
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from pom.home_page_elements import HomePage
+from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def about_us_section_verbiage(playwright: Playwright) -> None:
+    # Assess - Given
+    # page = login_set_up
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    browser = playwright.chromium.launch(headless=False, slow_mo=1000)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+    time.sleep(1)
+
+    # assert not page.is_visible(HomePage.celebrating_beauty_header)
+    # Click text=playwright-practice was founded by a group of like-minded fashion devotees, dete
+    # assert page.is_visible(HomePage.celebrating_beauty_body)
+
+    expect(HomePage.celebrating_beauty_body).to_be_visible()
+
+
+# @pytest.mark.regression
+# def test_about_us_section_verbiage_2(login_set_up) -> None:
+#     # Assess - Given
+#     page = login_set_up
+#
+#     assert page.is_visible(HomePage.celebrating_beauty_header)
+#     # Click text=playwright-practice was founded by a group of like-minded fashion devotees, dete
+#     assert page.is_visible(HomePage.celebrating_beauty_body)
+
+with sync_playwright() as playwright:
+    about_us_section_verbiage(playwright)

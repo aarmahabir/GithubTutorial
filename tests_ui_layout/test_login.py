@@ -1,7 +1,11 @@
+import time
+
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-def test_run(playwright: Playwright) -> None:
+def test_login(login_set_up) -> None:
+    # we dont need this code any more:
+    """
     # slow-mo slows down the execution
     browser = playwright.chromium.launch(headless=False, slow_mo=500)
     context = browser.new_context()
@@ -13,8 +17,9 @@ def test_run(playwright: Playwright) -> None:
     # page.pause()
 
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    # time.sleep(1)
-    page.get_by_role("button", name="Log In").click()
+    time.sleep(1)
+    """
+
 
     # login_issue = True
     # while login_issue:
@@ -26,15 +31,6 @@ def test_run(playwright: Playwright) -> None:
     # time.sleep(1)
     # print(login_issue)
 
-    page.get_by_test_id("signUp.switchToSignUp").click()
-    page.get_by_role("button", name="Log in with Email").click()
-    page.get_by_test_id("emailAuth").get_by_role("textbox", name="Email").fill("symon.storozhenko@gmail.com")
-    page.get_by_test_id("emailAuth").get_by_role("textbox", name="Email").press("Tab")
-    page.get_by_role("textbox", name="Password").fill("test123")
-    page.get_by_test_id("submit").get_by_test_id("buttonElement").click()
+    page = login_set_up
     page.click("[aria-label='symon.storozhenko account menu']")
-
     assert page.is_visible("text=My Orders")
-
-    context.close()
-    browser.close()

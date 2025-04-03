@@ -20,7 +20,6 @@ def test_login(login_set_up) -> None:
     time.sleep(1)
     """
 
-
     # login_issue = True
     # while login_issue:
     #     if not page.is_visible("[data-testid=\"sign.Up.switchToSignUp\"]"):

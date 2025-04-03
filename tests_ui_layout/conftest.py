@@ -26,6 +26,8 @@ def set_up(page):
     # this steps pauses the code. Its possible to play your code step by step.
     # page.pause()
     """
+    # context = browser.new_context()
+    # page = context.new_page()
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
     time.sleep(3)
 

@@ -29,7 +29,7 @@ def test_login(login_set_up) -> None:
     #         login_issue = False
     # time.sleep(1)
     # print(login_issue)
-
+    time.sleep(1)
     page = login_set_up
     page.click("[aria-label='symon.storozhenko account menu']")
     assert page.is_visible("text=My Orders")

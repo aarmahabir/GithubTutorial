@@ -4,11 +4,11 @@ from pom.home_page_elements import HomePage
 from playwright.sync_api import Playwright, sync_playwright
 
 
-def test_about_us_section_verbiage(login_set_up) -> None:
+def test_about_us_section_verbiage(set_up) -> None:
     # Assess - Given
     # page = login_set_up
 
-    page = login_set_up
+    page = set_up
 
     # browser = playwright.chromium.launch(headless=False, slow_mo=500)
     # context = browser.new_context()

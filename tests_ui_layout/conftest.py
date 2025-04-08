@@ -36,6 +36,7 @@ def set_up(page):
 
     # The yield keyword is used to return a list of values from a function.
     yield page
+    page.close()
 
 @pytest.fixture()
 def login_set_up(set_up):

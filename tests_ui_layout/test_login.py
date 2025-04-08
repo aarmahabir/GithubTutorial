@@ -4,7 +4,7 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 
 
 def test_login(login_set_up) -> None:
-    # we dont need this code any more:
+    # we dont need this code any more since we have a fixture in conftest:
     """
     # slow-mo slows down the execution
     browser = playwright.chromium.launch(headless=False, slow_mo=500)

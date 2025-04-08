@@ -1,6 +1,11 @@
 import os
 import time
 import pytest
+
+from dotenv import load_dotenv
+
+# Laad de .env-variabelen
+load_dotenv()
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 # pytest herkent automatisch de naam van de file conftest. Dus daarom hoef je niets te importeren
@@ -56,7 +61,7 @@ def login_set_up(set_up):
     page.get_by_test_id("emailAuth").get_by_role("textbox", name="Email").fill("symon.storozhenko@gmail.com")
     page.get_by_test_id("emailAuth").get_by_role("textbox", name="Email").press("Tab")
     # page.get_by_role("textbox", name="Password").fill("test123")
-    page.fill("input[type='password']", os.environ["PASSWORD"])
+    page.fill("input[type='password']", os.environ.get("PASSWORD"))
     page.get_by_test_id("submit").get_by_test_id("buttonElement").click()
 
     # login_issue = True

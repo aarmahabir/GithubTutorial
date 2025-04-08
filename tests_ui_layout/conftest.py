@@ -1,3 +1,4 @@
+import os
 import time
 import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
@@ -54,7 +55,8 @@ def login_set_up(set_up):
     page.get_by_role("button", name="Log in with Email").click()
     page.get_by_test_id("emailAuth").get_by_role("textbox", name="Email").fill("symon.storozhenko@gmail.com")
     page.get_by_test_id("emailAuth").get_by_role("textbox", name="Email").press("Tab")
-    page.get_by_role("textbox", name="Password").fill("test123")
+    # page.get_by_role("textbox", name="Password").fill("test123")
+    page.fill("input[type='password']", os.environ["PASSWORD"])
     page.get_by_test_id("submit").get_by_test_id("buttonElement").click()
 
     # login_issue = True

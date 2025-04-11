@@ -94,16 +94,17 @@ def context_creation(playwright):
     # page.press("[data-testid='siteMembers.container'] >> input[type='email']", "Tab")
     # page.fill("input[type='password']", PASSWORD)
     # page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
-
+    time.sleep(2)
+    context.storage_state(path='state.json')
     yield context
 
 
 @pytest.fixture()
-def login_set_up(context_creation):
-    context = context_creation
+def login_set_up(context_creation, browser):
+    context = browser.new_context(storage_state='state.json')
     page = context.new_page()
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    time.sleep(3)
+    time.sleep(1)
 
     yield page
-    page.close()
+    context.close()
